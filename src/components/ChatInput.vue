@@ -100,6 +100,7 @@ const isRecording = ref(false);
 const speechSupported = ref(false);
 const micTooltip = ref("按住说话，松开结束");
 let recognition = null;
+let interimText = ""; // 存储中间识别结果
 
 function emitSend() {
   const t = text.value.trim();
@@ -144,22 +145,34 @@ onMounted(() => {
   };
   recognition.onend = () => {
     isRecording.value = false;
+    interimText = "";
   };
   recognition.onerror = () => {
     isRecording.value = false;
   };
   recognition.onresult = (event) => {
-    let transcript = "";
+    let interim = "";
+    let final = "";
+    
     for (let i = event.resultIndex; i < event.results.length; i++) {
       const res = event.results[i];
-      // 只处理最终结果，忽略中间识别结果
-      if (res.isFinal && res[0] && res[0].transcript) {
-        transcript += res[0].transcript;
+      const transcript = res[0]?.transcript || "";
+      
+      if (res.isFinal) {
+        final += transcript;
+      } else {
+        interim += transcript;
       }
     }
-    if (transcript) {
+    
+    // 如果有最终结果，添加到输入框
+    if (final) {
       const sep = text.value && !text.value.endsWith(" ") ? " " : "";
-      text.value = `${text.value}${sep}${transcript}`;
+      text.value = `${text.value}${sep}${final}`;
+      interimText = "";
+    } else if (interim) {
+      // 只有中间结果时，存储但不立即显示
+      interimText = interim;
     }
   };
 });
