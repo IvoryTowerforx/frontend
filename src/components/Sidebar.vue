@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar-wrap">
-    <XiaoyuAvatar avatarUrl="/xiaoyu-avatar.png" />
+    <XiaoyuAvatar :avatarUrl="`${baseUrl}xiaoyu-avatar.png`" />
     <div class="header">
       <el-button type="primary" :icon="Plus" class="new-btn" @click="createNew">
         新建对话
@@ -41,6 +41,8 @@ import { useChatStore } from "../store/chatStore";
 import { Plus, ChatLineSquare, Delete } from "@element-plus/icons-vue";
 import { useRouter } from "vue-router";
 import XiaoyuAvatar from "./XiaoyuAvatar.vue";
+
+const baseUrl = import.meta.env.BASE_URL;
 
 const router = useRouter();
 const chat = useChatStore();

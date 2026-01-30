@@ -42,7 +42,7 @@
           <template v-else>
             <div class="empty-state">
               <div class="empty-icon">
-                <img src="/xiaoyu-avatar.png" alt="小玉头像" />
+                <img :src="`${baseUrl}xiaoyu-avatar.png`" alt="小玉头像" />
               </div>
               <div class="empty-text">开始对话吧</div>
             </div>
@@ -58,6 +58,8 @@
 
 <script setup>
 import { onUpdated, ref } from "vue";
+
+const baseUrl = import.meta.env.BASE_URL;
 
 defineProps({
   messages: { type: Array, default: () => [] },

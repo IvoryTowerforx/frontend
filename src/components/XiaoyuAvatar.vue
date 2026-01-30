@@ -12,7 +12,7 @@
 defineProps({
   avatarUrl: {
     type: String,
-    default: "/xiaoyu-avatar.png",
+    default: `${import.meta.env.BASE_URL}xiaoyu-avatar.png`,
   },
   name: {
     type: String,
