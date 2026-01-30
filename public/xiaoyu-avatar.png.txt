@@ -1,0 +1,9 @@
+<!-- 将你的小玉形象图片放在这里，命名为 xiaoyu-avatar.png
+     建议：
+     - 尺寸：正方形 (500x500px 或更大)
+     - 格式：PNG 或 WebP (支持透明背景)
+     - 建议背景透明，这样配合圆形裁剪效果最好
+     
+     然后在 Sidebar.vue 中改为：
+     <XiaoyuAvatar avatarUrl="/xiaoyu-avatar.png" />
+-->
