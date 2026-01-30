@@ -135,7 +135,7 @@ onMounted(() => {
   if (!speechSupported.value) return;
 
   recognition = createSpeechRecognition({
-    lang: "zh-CN",
+    lang: "zh-Hans-CN",
     interimResults: true,
   });
   if (!recognition) return;

@@ -13,7 +13,7 @@ export function createSpeechRecognition(options = {}) {
   if (!SR) return null;
 
   const {
-    lang = "zh-CN",
+    lang = "zh-Hans-CN",
     interimResults = true,
     continuous = false,
     maxAlternatives = 1,
