@@ -152,7 +152,8 @@ onMounted(() => {
     let transcript = "";
     for (let i = event.resultIndex; i < event.results.length; i++) {
       const res = event.results[i];
-      if (res[0] && res[0].transcript) {
+      // 只处理最终结果，忽略中间识别结果
+      if (res.isFinal && res[0] && res[0].transcript) {
         transcript += res[0].transcript;
       }
     }
